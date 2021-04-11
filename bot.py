@@ -57,7 +57,7 @@ def process_message(msg):
     talk_text = r.json()["data"]["answer"]
     return talk_text
 
-@app.route("/wechat", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def wechat():
     signature = request.args.get('msg_signature', '')
     timestamp = request.args.get('timestamp', '')
