@@ -55,6 +55,7 @@ def process_message(msg):
     chat_url = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_textchat"
     r = requests.post(chat_url, params)
     talk_text = r.json()["data"]["answer"]
+    print(talk_text)
     return talk_text
 
 @app.route("/wechat", methods=['GET', 'POST'])
@@ -75,6 +76,7 @@ def wechat():
             )
         except InvalidSignatureException:
             abort(403)
+        print(echo_str)
         return echo_str
 
     else:
@@ -94,6 +96,7 @@ def wechat():
             rep = process_message(message)
             reply = create_reply(rep, msg).render()
             res = crypto.encrypt_message(reply, nonce, timestamp)
+            print(res)
             return res
 
 if __name__ == "__main__":
